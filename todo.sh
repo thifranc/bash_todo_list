@@ -11,5 +11,3 @@ todoFunc(){
 	    sed -i -e "${3}d" ${TODO_PATH}/$2
     fi
 }
-
-alias todo=todoFunc
