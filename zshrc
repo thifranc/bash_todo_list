@@ -25,5 +25,5 @@ fi
 autoload bashcompinit
 bashcompinit
 source ${BASH_AUTOCOMPLETE_PATH}
-source ~/Persos/todoHandler/todo.sh
+source ~/todo.sh
 #here end the lines added by todo_list_github
