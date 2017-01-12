@@ -1,20 +1,10 @@
 #!/bin/bash
 os=$("uname")
 
-if [ "$os" == "Darwin" ]
-then
-compinstall
-fi
 cat zshrc >> ~/.zshrc
 cp githubPulling.sh ~
 cp todo.sh ~
-if [ -z "$BASH_AUTOCOMPLETE_PATH" ]
-then
-	echo "You should cp the todo file in \$BASH_AUTOCOMPLETE_PATH
-see the zshrc file for more information"
-else
-	cp todo $BASH_AUTOCOMPLETE_PATH
-fi
+mkdir -p ~/todo
 while true; do
     read -p "Do you wish to install Github auto-pulling [y/n]?" yn
     case $yn in
@@ -27,4 +17,15 @@ then
 	echo "~/githubPulling.sh" >> ~/.zshrc
 else
 	rm ~/githubPulling.sh
+fi
+if [ "$os" == "Darwin" ]
+then
+	compinstall
+	echo "Installation is almost complete !
+as you are on MAC OSX, run the following to finish installing :
+cp todo /usr/local/etc/bash_completion.d/"
+else
+	echo "Installation is almost complete !
+as you are on LINUX, run the following to finish installing :
+sudo cp todo /etc/bash_completion.d/"
 fi

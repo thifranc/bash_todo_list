@@ -1,3 +1,5 @@
+
+#here begin the lines added by todo_list_github
 os=$("uname")
 
 #it's up to you to set those variables
@@ -24,3 +26,4 @@ autoload bashcompinit
 bashcompinit
 source ${BASH_AUTOCOMPLETE_PATH}
 ~/todo.sh
+#here end the lines added by todo_list_github
