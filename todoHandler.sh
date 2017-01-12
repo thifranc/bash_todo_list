@@ -1,12 +1,8 @@
 #!/bin/bash
 
 sshConnect () {
-if [ $# -ne 2 ] ; then
-  echo "Usage: ssh-add-pass keyfile passfile"
-  return 1
-fi
-
 eval $(ssh-agent)
+if [ $# == 2 ] ; then
 pass=$(echo $2)
 
 #beware expect needs to be installed
@@ -16,6 +12,11 @@ expect << EOF
   send "$pass\r"
   expect eof
 EOF
+elif [ $# == 1 ] ; then
+    ssh-add $1
+else
+    echo "Wrong numbers of arguments"
+fi
 }
 
 gitWatcher () {
@@ -24,7 +25,7 @@ if [ $# -ne 1 ] ; then
   return 1
 fi
 #take $1 as argument of folder to watch
-abs_path=$(readlink -f $1)
+abs_path=$1
 git='/.git'
 
 abs_git=$abs_path$git
@@ -42,7 +43,7 @@ else
 	echo "should update $1"
 	cd $abs_path
 	git pull origin master
-	cd ~
+	cd -
 fi
 }
 

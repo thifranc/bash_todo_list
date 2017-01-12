@@ -4,6 +4,4 @@ _todo()
     COMPREPLY=( $(compgen -W "$(ls $TODO_PATH)" -- $cur) )
 }
 
-complete -F _todo seeTodo
-complete -F _todo rmTodo
-complete -F _todo addTodo
+complete -F _todo todoFunc
