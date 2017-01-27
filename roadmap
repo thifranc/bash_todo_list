@@ -1,5 +1,2 @@
-add create file option (as prompt) if filename does not match
-add erase todo by matching pattern inside option : see https://github.com/thifranc/todo-bash
 add autosave/push -> every time ? looks boring but why not
-add rm file if todo is empty -> todo rm [filename] *
 improve installation UI : see https://github.com/thifranc/todo-bash
