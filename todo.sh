@@ -1,3 +1,13 @@
+sedPolyfill(){
+os=$("uname")
+if [[ "$os" == "Darwin" ]]
+then
+    sed -i '' '${1}d' $2
+else
+    sed -i -e "${1}d" $2
+fi
+    
+}
 todoFunc(){
 	if [[ $1 == "see" ]]
 	then
@@ -25,7 +35,7 @@ todoFunc(){
 		else
 			if [[ $3 =~ '^[0-9]+$' ]]
 			then
-				sed -i -e "${3}d" ${TODO_PATH}/$2
+                sedPolyfill $3 ${TODO_PATH}/$2
 			else
 				match=$(grep "$3" ${TODO_PATH}/$2)
                 num_matches=$(echo ${match} | wc -l)
@@ -39,7 +49,7 @@ todoFunc(){
 					return 1
 				else
 					line_number=$(grep -n "$3" ${TODO_PATH}/$2 | cut -d: -f1)
-					sed -i -e "${line_number}d" ${TODO_PATH}/$2
+                    sedPolyfill $line_number ${TODO_PATH}/$2
 				fi
 			fi
 			if [ ! -s ${TODO_PATH}/$2 ]
@@ -50,7 +60,8 @@ todoFunc(){
 	elif [[ $1 == "save" ]]
 	then
 		cd ${TODO_PATH}
-		git commit -am "todo updated"
+        git add .
+		git commit -m "todo updated"
 		git push origin master
 		cd -
 	fi
