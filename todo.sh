@@ -2,7 +2,7 @@ sedPolyfill(){
 os=$("uname")
 if [[ "$os" == "Darwin" ]]
 then
-    sed -i '' '${1}d' $2
+    sed -i '' "${1}d" $2
 else
     sed -i -e "${1}d" $2
 fi
