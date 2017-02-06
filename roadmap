@@ -1,2 +1,3 @@
 add autosave/push -> every time ? looks boring but why not
 improve installation UI : see https://github.com/thifranc/todo-bash
+kill ssh-agent by PID ?
