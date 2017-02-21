@@ -28,6 +28,7 @@ Commands provided :
 * todo rm [todo_list name] 
   - [todo line number] -> remove the todo whose number was provided
   - [matching word] -> will search for matching word and remove the corresponding todo task, if none or many matches, you'll be warned
+  - all -> will remove the file
 * todo save -> will commit "todo updated" and push on your repo-master
 
 I'll keep working on it to smoothen user experience in installation and at use  
