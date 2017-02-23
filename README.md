@@ -25,7 +25,11 @@ Then the ~/todo directory should become the folder for all of your todo lists !
 Commands provided :
 * todo see [todo_list name] -> display your todo list
 * todo add [todo_list name] "[new_todo]" -> append a new todo in the list provided as argument
-* todo rm [todo_list name] [todo line number] -> remove the todo whose number was provided
+* todo rm [todo_list name] 
+  - [todo line number] -> remove the todo whose number was provided
+  - [matching word] -> will search for matching word and remove the corresponding todo task, if none or many matches, you'll be warned
+  - all -> will remove the file
+* todo save -> will commit "todo updated" and push on your repo-master
 
 I'll keep working on it to smoothen user experience in installation and at use  
 But feel free to PR me or send me any idea you'd have !
