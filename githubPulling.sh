@@ -19,17 +19,13 @@ else
 fi
 }
 
-gitWatcher () {
+gitCompare () {
 if [ $# -ne 1 ] ; then
-  echo "Usage: gitWatcher [path_to_watch]"
+  echo "Usage: gitCompare [path_to_compare]"
   return 1
 fi
-#take $1 as argument of folder to watch
-abs_path=$1
 git='/.git'
-
-abs_git=$abs_path$git
-
+abs_git=$1$git
 #get url of git repo
 url=$(git --git-dir $abs_git config --get remote.origin.url)
 
@@ -47,5 +43,19 @@ else
 fi
 }
 
-sshConnect ${SSH_PATH} ${SSH_KEY}
-gitWatcher ${TODO_PATH}
+gitWatcher () {
+
+#iterate through all received arg and check git Sync
+for abs_path in "$@"; do
+    gitCompare $abs_path
+done
+}
+
+#pass env var to benefit from bash autocompletion
+gitSave () {
+	cd $1
+	git add .
+	git commit -m "$1 updated"
+	git push origin master
+	cd -
+}

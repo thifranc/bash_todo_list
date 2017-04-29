@@ -60,7 +60,7 @@ todoFunc(){
 	elif [[ $1 == "save" ]]
 	then
 		cd ${TODO_PATH}
-        git add .
+        	git add .
 		git commit -m "todo updated"
 		git push origin master
 		cd -
