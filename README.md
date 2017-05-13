@@ -1,5 +1,5 @@
 # bash_todo_list
-###A simple CLI todo_list synced with Github###
+### A simple CLI todo_list synced with Github
 
 Bash todo list is a simple tool
 to handle todo listing easily directly in your terminal
@@ -13,7 +13,7 @@ Warning : You need to have a SSH-key to use the git-watcher
 If you want one : follow this [link](https://help.github.com/articles/connecting-to-github-with-ssh/)  
 And look up your zshrc file to add SSH_KEY as environnement variable not to be bothered by a prompt  
 
-###Quick Start###
+### Quick Start
 
 ```
 git clone https://github.com/thifranc/bash_todo_list.git
