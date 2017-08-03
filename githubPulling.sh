@@ -59,3 +59,12 @@ gitSave () {
 	git push origin master
 	cd -
 }
+
+if ! pgrep -x "ssh-agent" > /dev/null
+then
+	sshConnect ${SSH_PATH} ${SSH_KEY}
+	gitWatcher ${TODO_PATH}
+	gitWatcher ${INFO_PATH}
+else
+	echo "git has already been updated"
+fi
