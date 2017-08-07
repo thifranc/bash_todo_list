@@ -49,8 +49,8 @@ then
 	echo "
 	source \"\${BASH_TODO_LIST_PATH}/githubPulling.sh\"
 	if ! pgrep -x "ssh-agent" > /dev/null
-	then
 		sshConnect \${SSH_PATH} \${SSH_KEY}
+	then
 		gitWatcher \$TODO_PATH
 	else
 		echo "git has already been updated"
