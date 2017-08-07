@@ -2,7 +2,7 @@
 
 sshConnect () {
 eval $(ssh-agent)
-if [ $# == 2 ] ; then
+if [ $# = 2 ] ; then
 pass=$(echo $2)
 
 #beware expect needs to be installed
@@ -32,7 +32,7 @@ url=$(git --git-dir $abs_git config --get remote.origin.url)
 sha_remote=$(git ls-remote $url HEAD | awk '{print $1;}')
 sha_local=$(git --git-dir $abs_git rev-parse origin/master)
 
-if [ "$sha_remote" == "$sha_local" ]
+if [ $sha_remote = "$sha_local" ]
 then
 	echo "up to date with $1"
 else
@@ -60,11 +60,3 @@ gitSave () {
 	cd -
 }
 
-if ! pgrep -x "ssh-agent" > /dev/null
-then
-	sshConnect ${SSH_PATH} ${SSH_KEY}
-	gitWatcher ${TODO_PATH}
-	gitWatcher ${INFO_PATH}
-else
-	echo "git has already been updated"
-fi
