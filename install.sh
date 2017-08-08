@@ -48,8 +48,8 @@ if [ $yn = "y" ]
 then
 	echo "
 	source \"\${BASH_TODO_LIST_PATH}/githubPulling.sh\"
-	if ! pgrep -x "ssh-agent" > /dev/null
 		sshConnect \${SSH_PATH} \${SSH_KEY}
+	if ! pgrep -x "ssh-agent" > /dev/null
 	then
 		gitWatcher \$TODO_PATH
 	else
