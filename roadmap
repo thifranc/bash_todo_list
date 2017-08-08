@@ -1,5 +1,1 @@
-add autosave/push -> every time ? looks boring but why not
-files inside a todo folder : see https://github.com/thifranc/todo-bash
-kill ssh-agent by PID ?
 install say to git remote add origin + bash completion file could be anywhere
-thus really think of a way to run all files from same folder

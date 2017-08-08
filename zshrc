@@ -16,4 +16,4 @@ fi
 autoload bashcompinit
 bashcompinit
 source ${BASH_AUTOCOMPLETE_PATH}
-source "${BASH_TODO_LIST_PATH}/todo.sh"
+source "${TODO_PATH}/.todo.sh"

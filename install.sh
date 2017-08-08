@@ -16,8 +16,6 @@ read -p $'Choose the path for your todo directory : \x0a default is ~/todo ' TOD
 TODO_PATH=${TODO_PATH:=~/todo}
 read -p $'Choose the path for your ssh public key : \x0a default is ~/.ssh/id_rsa ' SSH_PATH
 SSH_PATH=${SSH_PATH:=~/.ssh/id_rsa}
-read -p $'Choose the path for your bash_todo_list folder : \x0a default is ~/.bash_todo_list ' BASH_TODO_LIST_PATH
-BASH_TODO_LIST_PATH=${BASH_TODO_LIST_PATH:=~/.bash_todo_list}
 read -p $'Choose the path for your bash autoComplete file : \x0a default is \x0a
 you seem to be on '"$os"$', \x0a so adviced one is '"$BASH_AUTOCOMPLETE_ADVICE"' ' BASH_AUTOCOMPLETE_PATH
 BASH_AUTOCOMPLETE_PATH=${BASH_AUTOCOMPLETE_PATH:=$BASH_AUTOCOMPLETE_ADVICE}
@@ -29,13 +27,10 @@ echo "#here begin the lines added by todo_list_github" >> ~/.zshrc
 echo "export TODO_PATH=${TODO_PATH}" >> ~/.zshrc
 echo "export SSH_PATH=${SSH_PATH}" >> ~/.zshrc
 echo "export BASH_AUTOCOMPLETE_PATH=${BASH_AUTOCOMPLETE_PATH}" >> ~/.zshrc
-echo "export BASH_TODO_LIST_PATH=${BASH_TODO_LIST_PATH}" >> ~/.zshrc
 
 cat zshrc >> ~/.zshrc
-mkdir -p "$BASH_TODO_LIST_PATH"
-cp githubPulling.sh $BASH_TODO_LIST_PATH
-cp todo.sh $BASH_TODO_LIST_PATH
 mkdir -p "$TODO_PATH"
+cp todo.sh .todo.sh && mv .todo.sh $TODO_PATH
 
 while true; do
     read -p "Do you wish to install Github auto-pulling [y/n]?" yn
@@ -46,8 +41,9 @@ while true; do
 done
 if [ $yn = "y" ]
 then
+	cp githubPulling.sh .githubPulling.sh && mv .githubPulling.sh $TODO_PATH
 	echo "
-	source \"\${BASH_TODO_LIST_PATH}/githubPulling.sh\"
+	source \"\${TODO_PATH}/.githubPulling.sh\"
 		sshConnect \${SSH_PATH} \${SSH_KEY}
 	if ! pgrep -x "ssh-agent" > /dev/null
 	then
@@ -56,8 +52,6 @@ then
 		echo "git has already been updated"
 	fi
 	" >> ~/.zshrc
-else
-	rm "$BASH_TODO_LIST_PATH/githubPulling.sh"
 fi
 if [ $os = "Darwin" ]
 then
