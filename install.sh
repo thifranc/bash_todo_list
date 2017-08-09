@@ -44,9 +44,9 @@ then
 	cp githubPulling.sh .githubPulling.sh && mv .githubPulling.sh $TODO_PATH
 	echo "
 	source \"\${TODO_PATH}/.githubPulling.sh\"
-		sshConnect \${SSH_PATH} \${SSH_KEY}
 	if ! pgrep -x "ssh-agent" > /dev/null
 	then
+		sshConnect \${SSH_PATH} \${SSH_KEY}
 		gitWatcher \$TODO_PATH
 	else
 		echo "git has already been updated"
