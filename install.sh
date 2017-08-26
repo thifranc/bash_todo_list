@@ -1,24 +1,10 @@
 #!/bin/bash
 
-#
-#load different variables
-#
-os=$("uname")
-if [[ $os == "Darwin" ]]
-then
-    BASH_AUTOCOMPLETE_ADVICE=/usr/local/etc/bash_completion.d/todo
-    else
-    BASH_AUTOCOMPLETE_ADVICE=/etc/bash_completion.d/todo
-fi
-
 echo "to set value as default, just press enter, pass only absolute path otherwise"
 read -p $'Choose the path for your todo directory : \x0a default is ~/todo ' TODO_PATH
 TODO_PATH=${TODO_PATH:=~/todo}
 read -p $'Choose the path for your ssh public key : \x0a default is ~/.ssh/id_rsa ' SSH_PATH
 SSH_PATH=${SSH_PATH:=~/.ssh/id_rsa}
-read -p $'Choose the path for your bash autoComplete file : \x0a default is \x0a
-you seem to be on '"$os"$', \x0a so adviced one is '"$BASH_AUTOCOMPLETE_ADVICE"' ' BASH_AUTOCOMPLETE_PATH
-BASH_AUTOCOMPLETE_PATH=${BASH_AUTOCOMPLETE_PATH:=$BASH_AUTOCOMPLETE_ADVICE}
 
 #
 #start to write
@@ -26,18 +12,20 @@ BASH_AUTOCOMPLETE_PATH=${BASH_AUTOCOMPLETE_PATH:=$BASH_AUTOCOMPLETE_ADVICE}
 echo "#here begin the lines added by todo_list_github" >> ~/.zshrc
 echo "export TODO_PATH=${TODO_PATH}" >> ~/.zshrc
 echo "export SSH_PATH=${SSH_PATH}" >> ~/.zshrc
-echo "export BASH_AUTOCOMPLETE_PATH=${BASH_AUTOCOMPLETE_PATH}" >> ~/.zshrc
+
+mkdir -p "$TODO_PATH"
 
 echo "
 	#export SSH_KEY=your_ssh_passphrase (optional)
 	autoload bashcompinit
 	bashcompinit
-	source ${BASH_AUTOCOMPLETE_PATH}
-	source "${TODO_PATH}/.todo.sh"
+	source \"\${TODO_PATH}\"/.todoCompletion
+	source \"\${TODO_PATH}\"/.todo.sh
 	#here end the lines added by todo_list_github
 " >> ~/.zshrc
-mkdir -p "$TODO_PATH"
+
 cp todo.sh .todo.sh && mv .todo.sh $TODO_PATH
+cp todoCompletion .todoCompletion && mv .todoCompletion $TODO_PATH
 
 while true; do
     read -p "Do you wish to install Github auto-pulling [y/n]?" yn
@@ -60,5 +48,3 @@ then
 	fi
 	" >> ~/.zshrc
 fi
-echo "Installation is almost complete ! Please run the following to finish
-sudo cp todoCompletion ${BASH_AUTOCOMPLETE_PATH}"
