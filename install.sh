@@ -28,7 +28,14 @@ echo "export TODO_PATH=${TODO_PATH}" >> ~/.zshrc
 echo "export SSH_PATH=${SSH_PATH}" >> ~/.zshrc
 echo "export BASH_AUTOCOMPLETE_PATH=${BASH_AUTOCOMPLETE_PATH}" >> ~/.zshrc
 
-cat zshrc >> ~/.zshrc
+echo "
+	#export SSH_KEY=your_ssh_passphrase (optional)
+	autoload bashcompinit
+	bashcompinit
+	source ${BASH_AUTOCOMPLETE_PATH}
+	source "${TODO_PATH}/.todo.sh"
+	#here end the lines added by todo_list_github
+" >> ~/.zshrc
 mkdir -p "$TODO_PATH"
 cp todo.sh .todo.sh && mv .todo.sh $TODO_PATH
 
@@ -53,10 +60,5 @@ then
 	fi
 	" >> ~/.zshrc
 fi
-if [ $os = "Darwin" ]
-then
-	compinstall
-fi
 echo "Installation is almost complete ! Please run the following to finish
-sudo cp todo ${BASH_AUTOCOMPLETE_PATH}"
-echo "#here end the lines added by todo_list_github" >> ~/.zshrc
+sudo cp todoCompletion ${BASH_AUTOCOMPLETE_PATH}"
