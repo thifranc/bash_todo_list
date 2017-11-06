@@ -12,7 +12,7 @@ expect << EOF
   send "$pass\r"
   expect eof
 EOF
-elif [ $# == 1 ] ; then
+elif [ $# = 1 ] ; then
     ssh-add $1
 else
     echo "Wrong numbers of arguments"
