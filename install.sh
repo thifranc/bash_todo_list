@@ -38,6 +38,7 @@ if [ $yn = "y" ]
 then
 	cp githubPulling.sh .githubPulling.sh && mv .githubPulling.sh $TODO_PATH
 	echo "
+	#new lines to enable Github auto-pulling
 	source \"\${TODO_PATH}/.githubPulling.sh\"
 	if ! pgrep -x "ssh-agent" > /dev/null
 	then
@@ -46,5 +47,6 @@ then
 	else
 		echo "git has already been updated"
 	fi
+	#end of lines to enable Github auto-pulling
 	" >> ~/.zshrc
 fi
