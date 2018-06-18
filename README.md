@@ -21,6 +21,14 @@ cd ./bash_todo_list
 bash ./install.sh
 ```
 Then the ~/todo directory should become the folder for all of your todo lists !
+If you have chosen the git auto-pulling, you'll have to do the following steps :
+```
+cd [your todo path, which should be in $TODO_PATH]
+git init
+git remote add origin [your git repository url (copy the ssh one not the https one)]
+git pull origin master
+```
+Now you can close and reopen your terminal and you should be all set !
 
 Commands provided :
 * todo see [todo_list name] -> display your todo list
