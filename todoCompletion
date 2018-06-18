@@ -4,4 +4,12 @@ _todo()
     COMPREPLY=( $(compgen -W "$(ls $TODO_PATH)" -- $cur) )
 }
 
-complete -F _todo todoFunc
+# complete is a bash builtin, but recent versions of ZSH come with a function
+# called bashcompinit that will create a complete in ZSH. If the user is in
+# ZSH, load and run bashcompinit before calling the complete function.
+if [[ -n ${ZSH_VERSION-} ]]; then
+  autoload -U +X bashcompinit && bashcompinit
+fi
+
+complete -F _todo todo
+

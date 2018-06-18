@@ -19,9 +19,7 @@ mkdir -p "$TODO_PATH"
 
 echo "
 	#export SSH_KEY=your_ssh_passphrase (optional)
-	autoload bashcompinit
-	bashcompinit
-	source \"\${TODO_PATH}\"/.todoCompletion
+	\. \"\${TODO_PATH}\"/.todoCompletion
 	source \"\${TODO_PATH}\"/.todo.sh
 	#here end the lines added by todo_list_github
 " >> ${START_SHELL_PATH}
