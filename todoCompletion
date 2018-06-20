@@ -8,8 +8,10 @@ _todo()
 # called bashcompinit that will create a complete in ZSH. If the user is in
 # ZSH, load and run bashcompinit before calling the complete function.
 if [[ -n ${ZSH_VERSION-} ]]; then
-  autoload -U +X bashcompinit && bashcompinit
+    autoload -U +X bashcompinit && bashcompinit
+    complete -F _todo todoFunc
+  else
+    complete -F _todo todo
 fi
 
-complete -F _todo todo
 
