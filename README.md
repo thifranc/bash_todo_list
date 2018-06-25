@@ -9,7 +9,7 @@ It provides mainly three settings :
 * A useful auto-completion to see your todo list names (try it by typing "todo [TAB]")
 * A git-watcher to automatically pull when needed
 
-Warning : You need to have a SSH-key to use the git-watcher, you also need to use zsh, but I'll soon update to change that  
+Warning : You need to have a SSH-key to use the git-watcher  
 If you want one : follow this [link](https://help.github.com/articles/connecting-to-github-with-ssh/)  
 And look up your zshrc file to add SSH_KEY as environnement variable not to be bothered by a prompt  
 
