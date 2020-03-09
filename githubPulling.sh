@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sshConnect () {
-eval $(ssh-agent)
+eval "$(ssh-agent)"
 if [ $# = 2 ] ; then
 pass=$(echo $2)
 
