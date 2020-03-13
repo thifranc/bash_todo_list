@@ -24,21 +24,31 @@ if [ $# -ne 1 ] ; then
   echo "Usage: gitCompare [path_to_compare]"
   return 1
 fi
+
+
+REPO_NAME=$(echo $1 | awk -F\! '{print $1}')
+BRANCH_NAME=$(echo $1 | awk -F\! '{print $2}')
+if [ -z $BRANCH_NAME ]
+then
+    BRANCH_NAME='master'
+fi
+
 git='/.git'
-abs_git=$1$git
+abs_git=$REPO_NAME$git
 #get url of git repo
 url=$(git --git-dir $abs_git config --get remote.origin.url)
 
+
 sha_remote=$(git ls-remote $url HEAD | awk '{print $1;}')
-sha_local=$(git --git-dir $abs_git rev-parse origin/master)
+sha_local=$(git --git-dir $abs_git rev-parse origin/$BRANCH_NAME)
 
 if [ $sha_remote = "$sha_local" ]
 then
-	echo "up to date with $1"
+	echo "up to date with $REPO_NAME"
 else
-	echo "should update $1"
-	cd $abs_path
-	git pull origin master
+	echo "should update $REPO_NAME"
+	cd $REPO_NAME
+	git pull origin $BRANCH_NAME
 	cd -
 fi
 }
